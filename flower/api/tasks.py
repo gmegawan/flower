@@ -124,26 +124,27 @@ Execute a task by name and wait results
 :statuscode 401: unauthorized request
 :statuscode 404: unknown task
         """
-        args, kwargs, options = self.get_task_args()
-        logger.debug("Invoking a task '%s' with '%s' and '%s'",
-                     taskname, args, kwargs)
+        # args, kwargs, options = self.get_task_args()
+        # logger.debug("Invoking a task '%s' with '%s' and '%s'",
+        #              taskname, args, kwargs)
 
-        try:
-            task = self.capp.tasks[taskname]
-        except KeyError:
-            raise HTTPError(404, "Unknown task '%s'" % taskname)
+        # try:
+        #     task = self.capp.tasks[taskname]
+        # except KeyError:
+        #     raise HTTPError(404, "Unknown task '%s'" % taskname)
 
-        try:
-            self.normalize_options(options)
-        except ValueError:
-            raise HTTPError(400, 'Invalid option')
+        # try:
+        #     self.normalize_options(options)
+        # except ValueError:
+        #     raise HTTPError(400, 'Invalid option')
 
-        result = task.apply_async(args=args, kwargs=kwargs, **options)
-        response = {'task-id': result.task_id}
+        # result = task.apply_async(args=args, kwargs=kwargs, **options)
+        # response = {'task-id': result.task_id}
 
-        response = await IOLoop.current().run_in_executor(
-            None, self.wait_results, result, response)
-        self.write(response)
+        # response = await IOLoop.current().run_in_executor(
+        #     None, self.wait_results, result, response)
+        # self.write(response)
+        self.write("You do not have permission!!!")
 
     def wait_results(self, result, response):
         # Wait until task finished and do not raise anything
@@ -199,25 +200,26 @@ Execute a task
 :statuscode 401: unauthorized request
 :statuscode 404: unknown task
         """
-        args, kwargs, options = self.get_task_args()
-        logger.debug("Invoking a task '%s' with '%s' and '%s'",
-                     taskname, args, kwargs)
+        # args, kwargs, options = self.get_task_args()
+        # logger.debug("Invoking a task '%s' with '%s' and '%s'",
+        #              taskname, args, kwargs)
 
-        try:
-            task = self.capp.tasks[taskname]
-        except KeyError:
-            raise HTTPError(404, "Unknown task '%s'" % taskname)
+        # try:
+        #     task = self.capp.tasks[taskname]
+        # except KeyError:
+        #     raise HTTPError(404, "Unknown task '%s'" % taskname)
 
-        try:
-            self.normalize_options(options)
-        except ValueError:
-            raise HTTPError(400, 'Invalid option')
+        # try:
+        #     self.normalize_options(options)
+        # except ValueError:
+        #     raise HTTPError(400, 'Invalid option')
 
-        result = task.apply_async(args=args, kwargs=kwargs, **options)
-        response = {'task-id': result.task_id}
-        if self.backend_configured(result):
-            response.update(state=result.state)
-        self.write(response)
+        # result = task.apply_async(args=args, kwargs=kwargs, **options)
+        # response = {'task-id': result.task_id}
+        # if self.backend_configured(result):
+        #     response.update(state=result.state)
+        # self.write(response)
+        self.write("You do not have permission!!!")
 
 
 class TaskSend(BaseTaskHandler):
@@ -261,16 +263,16 @@ Execute a task by name (doesn't require task sources)
 :statuscode 401: unauthorized request
 :statuscode 404: unknown task
         """
-        args, kwargs, options = self.get_task_args()
-        logger.debug("Invoking task '%s' with '%s' and '%s'",
-                     taskname, args, kwargs)
-        result = self.capp.send_task(
-            taskname, args=args, kwargs=kwargs, **options)
-        response = {'task-id': result.task_id}
-        if self.backend_configured(result):
-            response.update(state=result.state)
-        self.write(response)
-
+        # args, kwargs, options = self.get_task_args()
+        # logger.debug("Invoking task '%s' with '%s' and '%s'",
+        #              taskname, args, kwargs)
+        # result = self.capp.send_task(
+        #     taskname, args=args, kwargs=kwargs, **options)
+        # response = {'task-id': result.task_id}
+        # if self.backend_configured(result):
+        #     response.update(state=result.state)
+        # self.write(response)
+        self.write("You do not have permission!!!")
 
 class TaskResult(BaseTaskHandler):
     @web.authenticated
@@ -351,16 +353,16 @@ Abort a running task
 :statuscode 401: unauthorized request
 :statuscode 503: result backend is not configured
         """
-        logger.info("Aborting task '%s'", taskid)
+        #logger.info("Aborting task '%s'", taskid)
 
-        result = AbortableAsyncResult(taskid)
-        if not self.backend_configured(result):
-            raise HTTPError(503)
+        # result = AbortableAsyncResult(taskid)
+        # if not self.backend_configured(result):
+        #     raise HTTPError(503)
 
-        result.abort()
+        # result.abort()
 
-        self.write(dict(message="Aborted '%s'" % taskid))
-
+        # self.write(dict(message="Aborted '%s'" % taskid))
+        self.write("You do not have permission!!!")
 
 class GetQueueLengths(BaseTaskHandler):
     @web.authenticated
