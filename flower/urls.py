@@ -26,6 +26,7 @@ settings = dict(
 
 handlers = [
     # App
+    url(r"", BrokerView, name='home'),
     url(r"/", WorkersView, name='main'),
     url(r"/workers", WorkersView, name='workers'),
     url(r"/worker/(.+)", WorkerView, name='worker'),
