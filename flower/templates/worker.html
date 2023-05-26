@@ -22,8 +22,8 @@
           Refresh
         </button>
         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop">
-          <li><a id="worker-shutdown" class="dropdown-item" data-bs-dismiss="dropdown">Shut Down</a></li>
-          <li><a id="worker-pool-restart" class="dropdown-item" data-bs-dismiss="dropdown">Restart Pool</a></li>
+          <!-- <li><a id="worker-shutdown" class="dropdown-item" data-bs-dismiss="dropdown">Shut Down</a></li>
+          <li><a id="worker-pool-restart" class="dropdown-item" data-bs-dismiss="dropdown">Restart Pool</a></li> -->
           <li><a id="worker-refresh" class="dropdown-item" data-bs-dismiss="dropdown">Refresh</a></li>
           <li><a id="worker-refresh-all" class="dropdown-item" data-bs-dismiss="dropdown">Refresh All</a></li>
         </ul>
@@ -84,7 +84,7 @@
                   </table>
                 </div>
 
-                <div class="col-lg-4 container">
+               <!--<div class="col-lg-4 container">
                   <form class="mx-auto">
                     <legend class="form-label mt-md-5">Pool size control</legend>
                     <div class="mb-3">
@@ -103,7 +103,7 @@
                     </div>
                   </form>
                 </div>
-              </div>
+              </div>-->
 
               {% if worker['stats'].get('autoscaler', None) %}
               <div class="col-md-4">
@@ -170,20 +170,20 @@
                   <td>{{ queue['queue_arguments'] }}</td>
                   <td>{{ queue['binding_arguments'] }}</td>
                   <td>{{ queue['auto_delete'] }}</td>
-                  <td><button id="worker-cancel-consumer-{{ queue['name'] }}" class="btn btn-danger text-nowrap">Cancel
-                      Consumer</button></td>
+                  <!--<td><button id="worker-cancel-consumer-{{ queue['name'] }}" class="btn btn-danger text-nowrap">Cancel
+                      Consumer</button></td>-->
                 </tr>
                 {% end %}
               </tbody>
             </table>
-            <div class="control-group col-lg-3">
+            <!--<div class="control-group col-lg-3">
               <div class="input-group mb-3">
                 <input id="add-consumer-name" type="text" class="form-control" placeholder="New consumer"
                   aria-label="New consumer" aria-describedby="worker-add-consumer">
                 <button class="btn btn-primary mx-1" type="button" id="worker-add-consumer">Add</button>
               </div>
             </div>
-          </div> <!-- end queues tab -->
+          </div>--> <!-- end queues tab -->
 
           <div class="tab-pane fade" id="tab-tasks" role="tabpanel" aria-labelledby="tab-tasks">
             <table class="table table-bordered table-striped caption-top">
@@ -285,7 +285,7 @@
             </table>
           </div> <!-- end tasks tab -->
 
-          <div class="tab-pane fade" id="tab-limits" role="tabpanel" aria-labelledby="tab-limits">
+          <!--<div class="tab-pane fade" id="tab-limits" role="tabpanel" aria-labelledby="tab-limits">
             <div class="col-lg-10">
               <table class="table table-bordered table-striped caption-top">
                 <caption>Task limits</caption>
@@ -325,7 +325,7 @@
                 </tbody>
               </table>
             </div>
-          </div> <!-- end limits tab -->
+          </div> --> <!-- end limits tab -->
 
           <div class="tab-pane fade" id="tab-config" role="tabpanel" aria-labelledby="tab-config">
             <div class="col-lg-8">
